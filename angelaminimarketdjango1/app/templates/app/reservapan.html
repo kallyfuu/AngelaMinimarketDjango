@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<div class="carrito">
+    <!-- Botón para cerrar el carrito -->
+    <h5>Carrito de compras</h5>
+    <button class="cerrar-carrito">X</button>
+    <ul class="lista-carrito"></ul>
+    <p class="total">Total: $0</p>
+    <button class="vaciar-carrito">Vaciar carrito</button>
+    <button class="comprar">Reservar</button>
+  </div>
+
+  <div class="modal">
+    <div class="modal-contenido">
+      <h2>Confirmar Reserva</h2>
+      <p>¿Estás seguro de que deseas realizar la reserva?</p>
+      <button class="cancelar-compra">Cancelar</button>
+      <button class="confirmar-compra">Confirmar</button>
+    </div>
+  </div>
+  <br>
+  {% load humanize %}
+  <div class="header-content container text-dark">
+    <h1>Ofertas</h1>
+  </div>
+  <!-- Sección de cards -->
+<section class="offers">
+<div class="container">
+  <div class="row">
+    {% for p in productos %}
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="offer-card">
+        <img src="{{ p.imagen.url }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <span class="descripcion">{{ p.nombre | title}}</span>
+          <span class="current-price">${{ p.precio | intcomma }}</span>
+          <br>
+          <a class="agregar-carrito" data-nombre="hallulla KG" data-precio="2500">Agregar al carrito</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</section>
+
+{% endblock%}

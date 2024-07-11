@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<!-- Formulario de contacto -->
+<section class="contacto mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h2 class="text-center mb-4">Contáctanos</h2>
+          <form id="contactForm" class="Formulario" method="post">
+
+            {% csrf_token %}
+
+            {{ form }}
+
+            <button type="submit" id="btnEnviar" class="btn btn-primary btn-block">Enviar mensaje</button>
+          </form>
+          {{mensaje}}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

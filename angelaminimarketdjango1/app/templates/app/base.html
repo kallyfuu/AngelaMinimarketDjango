@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngelaMinimarket</title>
+    {% load static %}
+    <!-- Enlace al CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Enlace al CSS personalizado -->
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
+    <!-- Enlaza el archivo CSS de Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="{% static 'app/img/Angela minimarket.png' %}">
+
+  </head>
+  <body id="body">
+    <!-- Header con menú -->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- Logo -->
+        <div class="logo">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'app/img/Angela minimarket.png' %}" alt="Logo" />
+          </a>
+        </div>
+        <!-- Menú de navegación -->
+        <div class="conteheader" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link text-dark" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'reservapan' %}">¿Quieres reservar pan?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'contacto' %}">Contacto</a>
+            </li>
+            {% if perms.app.view_panesbd %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'listar_producto' %}">lista de panes</a>
+            </li>
+            {% endif %}
+            {% if perms.app.add_panesbd %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'agregar_producto' %}">Agregar pan</a>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">@{{ user.username }}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'login' %}">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'registro' %}">Registrate</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <br />
+    </header>
+
+    <div id="contenido">
+      
+        {% block contenido %}
+
+        {% endblock %}
+
+    </div>
+   
+    <footer class="footer bg-dark text-white mt-5">
+      <br />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Angela MiniMarket</h5>
+            <p>
+              Somos un mercado familiar ubicado en Puerto Montt, ofreciendo
+              productos frescos y de alta calidad a precios convenientes.
+            </p>
+            <ul class="list-unstyled">
+              <li>
+                <a href="mailto:Angela.libreria1@gmail.com"
+                  >Angela.libreria1@gmail.com</a
+                >
+              </li>
+              <li><a href="tel:+56942595070">(+56) 9 4259 5070</a></li>
+              <li>
+                <address>Sirius 2502 Puerto Montt, Los Lagos, Chile</address>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h5>Horario de atención</h5>
+            <ul class="list-unstyled">
+              <li>Lunes a Jueves: 9:00 - 22:00 hrs.</li>
+              <li>Viernes y Sábado: 9:00 - 23:00 hrs.</li>
+              <li>Domingo: Cerrado</li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h5>Redes sociales</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/angelaminimarket/"
+                  ><i class="fab fa-instagram"></i> Instagram</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="{% static 'app/js/car.js' %}"></script>
+    <script src="{% static 'app/js/apimaps.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+    
+    <!-- Scripts de Bootstrap (jQuery y Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <!-- Script de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+      {% for m in messages %}
+        <script>
+          Swal.fire({
+            "title":"Felicitaciones",
+            "text":"{{m}}",
+            "icon":"success"
+          })
+        </script>
+      {% endfor %}
+    {% endif %}
+
+    {% block js %}
+    {% endblock %}
+
+  </body>
+</html>
