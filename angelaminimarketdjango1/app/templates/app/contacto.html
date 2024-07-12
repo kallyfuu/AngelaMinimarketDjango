@@ -8,11 +8,14 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <h2 class="text-center mb-4">Contáctanos</h2>
-          <form id="contactForm" class="Formulario" method="post">
+          <form id="contactoForm" class="Formulario" method="post" novalidate>
 
             {% csrf_token %}
 
             {{ form }}
+            <div id="nombre_error" style="color: red;"></div>
+            <div id="correo_error" style="color: red;"></div>
+            <div id="mensaje_error" style="color: red;"></div>
 
             <button type="submit" id="btnEnviar" class="btn btn-primary btn-block">Enviar mensaje</button>
           </form>
@@ -21,4 +24,7 @@
       </div>
     </div>
   </section>
+{% endblock %}
+
+{% block js %}  
 {% endblock %}

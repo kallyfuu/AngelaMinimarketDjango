@@ -23,45 +23,50 @@
 
 {% block contenido %}
 {% load humanize %}
-<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 text-center justify-content-center">
-    <br>
-    <h2>Listado de Productos</h2>
-    <br>
-    <div class="table-resposive">
-        <table class="table table-striped table-hover table-resposive-sm">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>¿Es Nuevo?</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for c in productos %}
-                <tr>
-                    <td>{{c.nombre | title}}</td>
-                    <td>${{c.precio | intcomma }}</td>
-                    <td>
-                        {% if c.nuevo %}
-                        SI
-                        {% else %}
-                        NO
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if perms.app.change_panesbd %}
-                        <a href="{% url 'modificar_producto' c.id %}" class="btn btn-info btn-sm">Modificar</a>
-                        {% endif %}
-                        {% if perms.app.delete_panesbd %}
-                        <a href="#" onclick="eliminarproducto({{ c.id }})"  class="btn btn-danger btn-sm">Eliminar</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="d-flex align-items-center justify-content-center vh-50">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 text-center">
+        <br>
+        <h2>Listado de Productos</h2>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>¿Es Nuevo?</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in productos %}
+                    <tr>
+                        <td>{{ c.nombre | title }}</td>
+                        <td>${{ c.precio | intcomma }}</td>
+                        <td>
+                            {% if c.nuevo %}
+                            SI
+                            {% else %}
+                            NO
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if perms.app.change_panesbd %}
+                            <a href="{% url 'modificar_producto' c.id %}" class="btn btn-info btn-sm">Modificar</a>
+                            {% endif %}
+                            {% if perms.app.delete_panesbd %}
+                            <a href="#" onclick="eliminarproducto({{ c.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}

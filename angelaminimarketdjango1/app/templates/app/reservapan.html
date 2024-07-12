@@ -1,7 +1,15 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block contenido %}
+{% block carrito%}
+<li class="nav-item">
+  <a class="nav-link text-dark" href="#">
+    <i class="fas fa-shopping-cart"> Carrito</i>
+    <!-- Icono de carrito -->
+  </a>
+</li>
+{% endblock %}
 
+{% block contenido %}
 <div class="carrito">
     <!-- Botón para cerrar el carrito -->
     <h5>Carrito de compras</h5>
@@ -37,7 +45,8 @@
           <span class="descripcion">{{ p.nombre | title}}</span>
           <span class="current-price">${{ p.precio | intcomma }}</span>
           <br>
-          <a class="agregar-carrito" data-nombre="hallulla KG" data-precio="2500">Agregar al carrito</a>
+          <a class="agregar-carrito" data-nombre="{{ p.nombre }}" data-precio="{{ p.precio }}">Agregar al carrito</a>
+
         </div>
       </div>
     </div>

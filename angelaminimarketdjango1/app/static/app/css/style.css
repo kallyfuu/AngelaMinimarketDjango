@@ -211,6 +211,10 @@ a .navbar-brand img {
   transition: background-color 0.3s ease;
 }
 
+.carrito, .modal {
+  display: none;
+}
+
 button:last-child {
   margin-right: 0; /* Elimina el margen derecho para el último botón */
 }

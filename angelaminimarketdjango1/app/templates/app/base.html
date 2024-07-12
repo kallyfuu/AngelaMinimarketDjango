@@ -61,6 +61,8 @@
               <a class="nav-link text-dark" href="{% url 'registro' %}">Registrate</a>
             </li>
             {% endif %}
+            {% block carrito %}
+            {% endblock %}
           </ul>
         </div>
       </nav>
@@ -127,6 +129,7 @@
       </div>
     </footer>
     
+    <script src="{% static 'app/js/validaciones.js' %}"></script>
     <script src="{% static 'app/js/car.js' %}"></script>
     <script src="{% static 'app/js/apimaps.js' %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
